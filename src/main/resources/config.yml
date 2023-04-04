@@ -1,0 +1,7 @@
+#version: { project-version }
+backend:
+  protocol: http # The type of the backend ("grpc", "http")
+  base-url: http://example.com/api # The domain name of the server (e.g. "http://example.com/api")
+  security:
+    api-key: a1b2c3 # The API key for the backend
+    api-secret: a1b2c3 # The secret key for the backend
