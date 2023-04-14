@@ -6,4 +6,3 @@ author: Hexcap
 description: Core plugin for HexCap's Minecraft server
 website: https://hexcap.net
 prefix: 'HexcapCore'
-load: STARTUP

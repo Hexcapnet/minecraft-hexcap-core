@@ -6,16 +6,11 @@ import lombok.Setter;
 import lombok.SneakyThrows;
 import net.hexcap.minecraft.core.config.file.FileManager;
 import net.hexcap.minecraft.core.config.webserver.WebServerLauncher;
-import net.hexcap.minecraft.core.handler.ModuleHandler;
+import net.hexcap.minecraft.core.event.ServerLoadEventHandler;
 import net.hexcap.minecraft.core.model.config.Config;
-import net.hexcap.minecraft.core.service.auth.AuthService;
-import net.hexcap.minecraft.core.service.auth.impl.IAuthService;
 import net.hexcap.minecraft.core.service.logger.Logger;
-import org.bukkit.plugin.InvalidDescriptionException;
-import org.bukkit.plugin.InvalidPluginException;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.IOException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 
@@ -35,12 +30,7 @@ public final class Core extends JavaPlugin {
     @SneakyThrows
     @Override
     public void onEnable() {
-        ModuleHandler moduleHandler = new ModuleHandler();
-        try {
-            moduleHandler.loadModules();
-        } catch (InvalidPluginException | InvalidDescriptionException | IOException e) {
-            getSLF4JLogger().info(e.getMessage());
-        }
+        _registerEvents();
         Config config = new Config();
         String apiKey = config.getYaml().getString("backend.security.api-key");
         String secretKey = config.getYaml().getString("backend.security.api-secret");
@@ -62,6 +52,10 @@ public final class Core extends JavaPlugin {
         WebServerLauncher launcher = new WebServerLauncher();
         launcher.run()
                 .thenAccept(this::setJavalin);
+    }
+
+    private void _registerEvents() {
+        getServer().getPluginManager().registerEvents(new ServerLoadEventHandler(), this);
     }
 
     public Logger getHexLogger() {

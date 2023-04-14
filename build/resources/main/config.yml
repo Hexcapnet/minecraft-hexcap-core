@@ -1,18 +1,7 @@
-#version: 1.0-SNAPSHOT
+#version: 1.0
 backend:
   protocol: http # The type of the backend ("grpc", "http")
   base-url: http://example.com/api # The domain name of the server (e.g. "http://example.com/api")
   security:
     api-key: a1b2c3 # The API key for the backend
     api-secret: a1b2c3 # The secret key for the backend
-
-modules:
-  authme-module:
-    enabled: true
-    sql:
-      software: postgresql # The type of the SQL database ("sqlite", "mysql", "postgresql")
-      host: localhost # The host of the SQL database
-      port: 5432 # The port of the SQL database
-      username: root # The username of the SQL database
-      password: root # The password of the SQL database
-      database: authme # The database name of the SQL database
