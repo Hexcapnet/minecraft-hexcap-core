@@ -5,68 +5,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1f44cdb-a583-4388-a74a-1af3047ba812" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/event/ServerLoadEventHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/checksums/checksums.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/checksums/md5-checksums.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/checksums/sha1-checksums.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/dependencies-accessors/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/gc.properties" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/api/config/security/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/api/controller/authme/AuthMeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/api/controller/command/CommandController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0.2/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0.2/checksums/md5-checksums.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0.2/checksums/sha1-checksums.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0.2/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0.2/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/hexcap-core.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/hexcap-core.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/minecraft-hexcap-core.main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/Core.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/Core.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/api/controller/TestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/api/controller/TestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/api/service/auth/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/api/service/auth/AuthService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/api/service/auth/impl/IAuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/api/service/auth/impl/IAuthService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/config/file/FileManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/config/file/FileManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/config/file/FileType.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/config/file/FileType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/config/webserver/WebServerLauncher.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/config/webserver/WebServerLauncher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/handler/ModuleHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/handler/ModuleHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/api/controller/TestController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/api/service/auth/AuthService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/api/service/auth/impl/IAuthService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/config/file/FileManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/config/file/FileType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/config/webserver/WebServerLauncher.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/event/ServerLoadEventHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/event/ServerLoadEventHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/model/config/Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/model/config/Config.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/model/user/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/model/user/User$UserBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/model/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/model/user/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/service/auth/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/service/auth/AuthService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/service/auth/impl/IAuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/service/auth/impl/IAuthService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/service/logger/Logger.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/net/hexcap/minecraft/core/service/logger/Logger.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/HexcapCore-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/HexcapCore-1.0.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/plugin.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/Core.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/Core.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/handler/ModuleHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/handler/ModuleHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/api/controller/TestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/api/service/auth/AuthService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/api/service/auth/impl/IAuthService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/config/file/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/config/FileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/config/file/FileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/config/FileType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/config/webserver/WebServerLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/api/config/server/WebServerLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/event/ServerLoadEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/event/ServerLoadEventHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/model/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/model/config/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/service/auth/impl/IAuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/hexcap/minecraft/core/service/auth/impl/IAuthService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +64,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -106,34 +92,39 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2OFa5VmUgRhwWNX1aWwiq11qEY8" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="gradle clean build" />
       <command value="gradle clean shadowJar" />
+      <command value="gradle publish" />
     </option>
   </component>
   <component name="RunManager" selected="Gradle.minecraft-hexcap-core [clean shadowJar]">
@@ -183,6 +174,28 @@
       <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
+    <configuration name="minecraft-hexcap-core [publish]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="publish" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="minecraft-hexcap-core" />
       <method v="2">
@@ -199,6 +212,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.minecraft-hexcap-core [clean shadowJar]" />
+        <item itemvalue="Gradle.minecraft-hexcap-core [publish]" />
         <item itemvalue="Gradle.minecraft-hexcap-core [clean build]" />
       </list>
     </recent_temporary>
@@ -212,6 +226,11 @@
       <option name="presentableId" value="Default" />
       <updated>1681158600755</updated>
       <workItem from="1681158602425" duration="5668000" />
+      <workItem from="1681600403301" duration="5788000" />
+      <workItem from="1682273894227" duration="652000" />
+      <workItem from="1682708262786" duration="8415000" />
+      <workItem from="1682782009211" duration="2072000" />
+      <workItem from="1682784103769" duration="3126000" />
     </task>
     <servers />
   </component>

@@ -1,5 +1,7 @@
 package net.hexcap.minecraft.core.event;
 
+import net.hexcap.minecraft.core.Core;
+import net.hexcap.minecraft.core.api.config.server.WebServerLauncher;
 import net.hexcap.minecraft.core.handler.ModuleHandler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,6 +16,8 @@ public class ServerLoadEventHandler implements Listener {
     public void onServerLoad(ServerLoadEvent event) throws InvalidPluginException, InvalidDescriptionException, IOException, InterruptedException {
         ModuleHandler moduleHandler = new ModuleHandler();
         moduleHandler.loadModules();
-
+        WebServerLauncher launcher = new WebServerLauncher();
+        launcher.run()
+                .thenAccept(Core::setJavalin);
     }
 }

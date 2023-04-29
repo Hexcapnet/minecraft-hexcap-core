@@ -68,8 +68,6 @@ public class IAuthService implements AuthService {
     @Override
     public Boolean register(String username, String email, String password) throws IOException, InterruptedException {
         Map<String, String> body = new HashMap<>();
-        body.put("firstName", "Steve");
-        body.put("lastName", "Hexi");
         body.put("username", username);
         body.put("email", email);
         body.put("password", password);

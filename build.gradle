@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'net.hexcap.minecraft'
-version = '1.0'
+version = '1.0.0'
 
 publishing {
     publications {
@@ -40,12 +40,23 @@ repositories {
         name = "sonatype"
         url = "https://oss.sonatype.org/content/groups/public/"
     }
+    maven {
+        name = "hexcap-repo"
+        allowInsecureProtocol = true
+        credentials {
+            username = rootProject.properties['user']
+            password = rootProject.properties['pass']
+        }
+        url = uri("http://repo.hexcap.net/repository/maven-public/")
+    }
 }
 
 dependencies {
+    implementation 'net.hexcap.modules:utils:1.0'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
     implementation 'org.slf4j:slf4j-simple:2.0.7'
     implementation 'io.javalin:javalin:5.4.2'
+    compileOnly 'net.hexcap.minecraft:authme-module:1.0'
     compileOnly 'org.projectlombok:lombok:1.18.20'
     compileOnly 'com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'

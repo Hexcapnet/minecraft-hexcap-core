@@ -1,7 +1,8 @@
-#version: 1.0
+#version: 1.0.0
+token: # Core API Security Token (enter a random strong value)
 backend:
   protocol: http # The type of the backend ("grpc", "http")
-  base-url: http://example.com/api # The domain name of the server (e.g. "http://example.com/api")
+  base-url: https://example.com/api/v1 # The domain name of the server (e.g. "https://example.com/api/v1")
   security:
     api-key: a1b2c3 # The API key for the backend
     api-secret: a1b2c3 # The secret key for the backend
