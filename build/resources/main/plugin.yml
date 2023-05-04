@@ -1,8 +1,0 @@
-name: HexcapCore
-version: '1.0.0'
-main: net.hexcap.minecraft.core.Core
-api-version: 1.16
-author: Hexcap
-description: Core plugin for HexCap's Minecraft server
-website: https://hexcap.net
-prefix: 'HexcapCore'

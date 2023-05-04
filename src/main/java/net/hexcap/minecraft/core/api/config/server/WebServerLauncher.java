@@ -21,6 +21,7 @@ public class WebServerLauncher {
             Javalin app = Javalin.create(config -> config.showJavalinBanner = false);
 
             app.before("/api/*", securityConfig);
+            app.get("/api/ping", ctx -> ctx.result("pong"));
             app.post("/api/authme/register", authMeController.register());
             app.put("/api/authme/password", authMeController.updatePassword());
             app.delete("/api/authme/unregister", authMeController.unregister());
