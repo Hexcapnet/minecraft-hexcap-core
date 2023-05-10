@@ -14,7 +14,7 @@ import java.util.jar.JarFile;
 public class ModuleHandler {
     private final Logger logger = Core.instance.getHexLogger();
 
-    public void loadModules() throws InvalidPluginException, InvalidDescriptionException, IOException, InterruptedException {
+    public void loadModules() throws InvalidPluginException, InvalidDescriptionException, IOException {
         logger.info("Loading modules... please wait.");
         File dataFolder = Core.getPlugin(Core.class).getDataFolder();
         File modules = new File(dataFolder.getPath(), "modules");
@@ -36,8 +36,8 @@ public class ModuleHandler {
                 }
                 Plugin plugin = Bukkit.getPluginManager().loadPlugin(file);
                 logger.info("Module " + file.getName() + " is loaded.");
+                assert plugin != null;
                 Bukkit.getPluginManager().enablePlugin(plugin);
-                logger.info("Module " + file.getName() + " is enabled.");
             }
         }
     }

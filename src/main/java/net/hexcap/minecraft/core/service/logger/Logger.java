@@ -5,7 +5,7 @@ import org.bukkit.ChatColor;
 
 public class Logger {
     private final char logo = '\u2B21';
-    private final String prefix = translateColorCodes("&e" + logo + " &6Hexcap &r");
+    private final String prefix = translateColorCodes("&e" + logo + " &6Hexcore &r");
 
     public void info(String message) {
         Bukkit.getServer().getConsoleSender().sendMessage(prefix + translateColorCodes("&a" + message));

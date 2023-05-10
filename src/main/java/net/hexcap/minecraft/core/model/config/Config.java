@@ -2,8 +2,8 @@ package net.hexcap.minecraft.core.model.config;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.hexcap.minecraft.core.config.FileManager;
-import net.hexcap.minecraft.core.config.FileType;
+import net.hexcap.minecraft.core.config.file.FileManager;
+import net.hexcap.minecraft.core.config.file.FileType;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

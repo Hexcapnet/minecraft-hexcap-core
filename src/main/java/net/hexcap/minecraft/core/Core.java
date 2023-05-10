@@ -1,76 +1,44 @@
 package net.hexcap.minecraft.core;
 
-import io.javalin.Javalin;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.SneakyThrows;
-import net.hexcap.minecraft.core.config.FileManager;
+import net.hexcap.minecraft.core.config.file.FileManager;
+import net.hexcap.minecraft.core.config.ws.WsConfig;
 import net.hexcap.minecraft.core.event.ServerLoadEventHandler;
-import net.hexcap.minecraft.core.model.config.Config;
+import net.hexcap.minecraft.core.handler.ModuleHandler;
 import net.hexcap.minecraft.core.service.logger.Logger;
-import net.hexcap.module.util.generator.PasswordGenerator;
-import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.InvalidDescriptionException;
+import org.bukkit.plugin.InvalidPluginException;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.springframework.messaging.simp.stomp.StompSession;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.cert.X509Certificate;
+import java.io.IOException;
 
 @Getter
 @Setter
 public final class Core extends JavaPlugin {
-    public static Core instance;
     @Getter
-    @Setter
-    private static Javalin javalin;
-    private HttpClient httpClient;
-    private HttpRequest.Builder httpRequestBuilder;
+    public static Core instance;
 
-    private static TrustManager[] trustAllCerts() {
-        return new TrustManager[]{
-                new X509TrustManager() {
-                    public X509Certificate[] getAcceptedIssuers() {
-                        return null;
-                    }
-
-                    public void checkClientTrusted(
-                            X509Certificate[] certs, String authType) {
-                    }
-
-                    public void checkServerTrusted(
-                            X509Certificate[] certs, String authType) {
-                    }
-                }
-        };
+    @Override
+    public void onLoad() {
+        getHexLogger().info("Hexcore is loading...");
     }
 
-    @SneakyThrows
     @Override
     public void onEnable() {
         _registerEvents();
-        Config config = new Config();
-        String apiKey = config.getYaml().getString("backend.security.api-key");
-        String secretKey = config.getYaml().getString("backend.security.api-secret");
-        setHttpRequestBuilder(HttpRequest.newBuilder()
-                .header("X-API-KEY", apiKey)
-                .header("X-API-SECRET", secretKey));
+        _init();
+
+
     }
 
     @Override
     public void onDisable() {
-        if (getJavalin() != null) getJavalin().close();
-    }
+        StompSession session = WsConfig.getSession();
+        if (session != null && session.isConnected()) session.disconnect();
+        getHexLogger().info("Plugin disabled.");
 
-    @Override
-    @SneakyThrows
-    public void onLoad() {
-        _init();
     }
 
     private void _registerEvents() {
@@ -81,18 +49,16 @@ public final class Core extends JavaPlugin {
         return new Logger();
     }
 
-    private void _init() throws NoSuchAlgorithmException, KeyManagementException {
-        instance = this;
-        SSLContext sslContext = SSLContext.getInstance("TLS");
-        sslContext.init(null, trustAllCerts(), new SecureRandom());
-        HttpClient.Builder builder = HttpClient.newBuilder()
-                .sslContext(sslContext);
-        setHttpClient(builder.build());
-        FileManager fileManager = new FileManager();
-        fileManager._init();
-        Config config = new Config();
-        FileConfiguration yaml = config.getYaml();
-        yaml.addDefault("token", new PasswordGenerator().useNumbers(true).useUpperCase(true).useSpecialChars(false).setLength(32).build());
-        config.setYaml(yaml);
+    private void _init() {
+        try {
+            instance = this;
+            FileManager fileManager = new FileManager();
+            fileManager._init();
+            WsConfig.connect();
+            ModuleHandler moduleHandler = new ModuleHandler();
+            moduleHandler.loadModules();
+        } catch (InvalidPluginException | InvalidDescriptionException | IOException e) {
+            getHexLogger().error(e.getMessage());
+        }
     }
 }

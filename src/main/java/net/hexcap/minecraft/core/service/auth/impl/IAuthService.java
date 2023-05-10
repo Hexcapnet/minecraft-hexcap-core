@@ -1,25 +1,21 @@
 package net.hexcap.minecraft.core.service.auth.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import net.hexcap.minecraft.core.Core;
-import net.hexcap.minecraft.core.model.config.Config;
+import net.hexcap.minecraft.core.config.ws.WsConfig;
+import net.hexcap.minecraft.core.dto.auth.RegisterDTO;
+import net.hexcap.minecraft.core.model.task.Task;
 import net.hexcap.minecraft.core.service.auth.AuthService;
+import net.hexcap.minecraft.core.service.logger.Logger;
+import org.springframework.messaging.simp.stomp.StompSession;
+import org.springframework.web.socket.messaging.WebSocketStompClient;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
+import static net.hexcap.minecraft.core.model.task.TaskAssignee.BACKEND;
+import static net.hexcap.minecraft.core.model.task.TaskType.REGISTER;
+import static net.hexcap.minecraft.core.model.task.TaskType.UNREGISTER;
 
 public class IAuthService implements AuthService {
-    private final HttpClient httpClient = Core.instance.getHttpClient();
-    private final ObjectMapper mapper = new ObjectMapper();
-    private final HttpRequest.Builder httpRequestBuilder = Core.instance.getHttpRequestBuilder();
-    private final Config config = new Config();
-    private final String baseUrl = config.getYaml().getString("backend.base-url");
+    private final Core core = Core.instance;
+    private final Logger logger = core.getHexLogger();
 
     /*
      * @param username
@@ -29,13 +25,8 @@ public class IAuthService implements AuthService {
      * @return Boolean
      * */
     @Override
-    public Boolean isRegistered(String username) throws IOException, InterruptedException {
-        HttpRequest request = httpRequestBuilder
-                .uri(URI.create(baseUrl + "/users/" + username))
-                .GET()
-                .build();
-        HttpResponse<Void> response = httpClient.send(request, HttpResponse.BodyHandlers.discarding());
-        return response.statusCode() == 200;
+    public Boolean isRegistered(String username) {
+        return false;
     }
 
 
@@ -46,16 +37,8 @@ public class IAuthService implements AuthService {
      * @return Boolean
      */
     @Override
-    public Boolean login(String username, String password) throws IOException, InterruptedException {
-        Map<String, String> body = Map.of("identifier", username, "password", password);
-        String json = mapper.writeValueAsString(body);
-        HttpRequest request = httpRequestBuilder
-                .uri(URI.create(baseUrl + "/auth/login"))
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(json, StandardCharsets.UTF_8))
-                .build();
-        HttpResponse<Void> response = httpClient.send(request, HttpResponse.BodyHandlers.discarding());
-        return response.statusCode() == 200;
+    public Boolean login(String username, String password) {
+        return false;
     }
 
     /*
@@ -66,20 +49,22 @@ public class IAuthService implements AuthService {
      * @return Boolean
      */
     @Override
-    public Boolean register(String username, String email, String password) throws IOException, InterruptedException {
-        Map<String, String> body = new HashMap<>();
-        body.put("username", username);
-        body.put("email", email);
-        body.put("password", password);
-        body.put("confirmPassword", password);
-        String json = mapper.writeValueAsString(body);
-        HttpRequest request = httpRequestBuilder
-                .uri(URI.create(baseUrl + "/auth/register"))
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(json, StandardCharsets.UTF_8))
-                .build();
-        HttpResponse<Void> response = httpClient.send(request, HttpResponse.BodyHandlers.discarding());
-        return response.statusCode() == 200;
+    public Boolean register(String username, String email, String password) {
+        try {
+            Task task = new Task();
+            task.setType(REGISTER);
+            RegisterDTO registerDTO = new RegisterDTO();
+            registerDTO.setUsername(username);
+            registerDTO.setEmail(email);
+            registerDTO.setPassword(password);
+            task.setData(registerDTO);
+            StompSession session = WsConfig.getSession();
+            session.send("/app/backend/tasks", task);
+            return true;
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return false;
+        }
     }
 
     /*
@@ -88,13 +73,18 @@ public class IAuthService implements AuthService {
      * @return Boolean
      */
     @Override
-    public Boolean unRegister(String username) throws IOException, InterruptedException {
-        HttpRequest request = httpRequestBuilder
-                .uri(URI.create(baseUrl + "/users?identifier=" + username))
-                .DELETE()
-                .build();
-        HttpResponse<Void> response = httpClient.send(request, HttpResponse.BodyHandlers.discarding());
-        return response.statusCode() == 200;
+    public Boolean unRegister(String username) {
+        try {
+            Task task = new Task();
+            task.setType(UNREGISTER);
+            task.setData(username);
+            StompSession session = WsConfig.getSession();
+            session.send("/app/backend/tasks", task);
+            return true;
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return false;
+        }
     }
 
     /*
@@ -104,15 +94,7 @@ public class IAuthService implements AuthService {
      * @return Boolean
      */
     @Override
-    public Boolean updateEmail(String username, String email) throws IOException, InterruptedException {
-        Map<String, String> body = Map.of("email", email);
-        String json = mapper.writeValueAsString(body);
-        HttpRequest request = httpRequestBuilder
-                .uri(URI.create(baseUrl + "/users?identifier=" + username))
-                .header("Content-Type", "application/json")
-                .PUT(HttpRequest.BodyPublishers.ofString(json, StandardCharsets.UTF_8))
-                .build();
-        HttpResponse<Void> response = httpClient.send(request, HttpResponse.BodyHandlers.discarding());
-        return response.statusCode() == 200;
+    public Boolean updateEmail(String username, String email) {
+        return false;
     }
 }

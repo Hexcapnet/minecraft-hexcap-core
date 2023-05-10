@@ -1,8 +1,8 @@
-name: HexcapCore
+name: Hexcore
 version: '${version}'
 main: net.hexcap.minecraft.core.Core
 api-version: 1.16
 author: Hexcap
-description: Core plugin for HexCap's Minecraft server
+description: Core plugin for Hexcap's Minecraft server
 website: https://hexcap.net
-prefix: 'HexcapCore'
+prefix: 'Hexcore'
