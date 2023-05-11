@@ -1,4 +1,5 @@
 #version: { project-version }
+server-id: # The ID of the server (e.g. skyblock-server)
 backend:
   domain: example.hexcap.io # The domain name of the server (e.g. "example.hexcap.io")
   security:
