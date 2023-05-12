@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'net.hexcap.minecraft'
-version = '1.1.1'
+version = '1.1.2'
 
 publishing {
     publications {
