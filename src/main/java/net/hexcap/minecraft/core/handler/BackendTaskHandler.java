@@ -15,10 +15,10 @@ public class BackendTaskHandler {
 
     public void handle(Task task) {
         switch (task.getType()) {
-            case REGISTER:
+            case "REGISTER":
                 handleRegister(task);
                 break;
-            case UNREGISTER:
+            case "UNREGISTER":
                 handleUnregister(task);
                 break;
         }

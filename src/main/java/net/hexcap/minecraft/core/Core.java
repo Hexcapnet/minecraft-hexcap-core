@@ -29,8 +29,6 @@ public final class Core extends JavaPlugin {
     public void onEnable() {
         _registerEvents();
         _init();
-
-
     }
 
     @Override

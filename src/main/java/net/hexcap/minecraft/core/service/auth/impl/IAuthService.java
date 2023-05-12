@@ -7,11 +7,6 @@ import net.hexcap.minecraft.core.model.task.Task;
 import net.hexcap.minecraft.core.service.auth.AuthService;
 import net.hexcap.minecraft.core.service.logger.Logger;
 import org.springframework.messaging.simp.stomp.StompSession;
-import org.springframework.web.socket.messaging.WebSocketStompClient;
-
-import static net.hexcap.minecraft.core.model.task.TaskAssignee.BACKEND;
-import static net.hexcap.minecraft.core.model.task.TaskType.REGISTER;
-import static net.hexcap.minecraft.core.model.task.TaskType.UNREGISTER;
 
 public class IAuthService implements AuthService {
     private final Core core = Core.instance;
@@ -52,7 +47,7 @@ public class IAuthService implements AuthService {
     public Boolean register(String username, String email, String password) {
         try {
             Task task = new Task();
-            task.setType(REGISTER);
+            task.setType("REGISTER");
             RegisterDTO registerDTO = new RegisterDTO();
             registerDTO.setUsername(username);
             registerDTO.setEmail(email);
@@ -76,7 +71,7 @@ public class IAuthService implements AuthService {
     public Boolean unRegister(String username) {
         try {
             Task task = new Task();
-            task.setType(UNREGISTER);
+            task.setType("UNREGISTER");
             task.setData(username);
             StompSession session = WsConfig.getSession();
             session.send("/app/backend/tasks", task);

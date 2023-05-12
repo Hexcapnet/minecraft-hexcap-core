@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Task {
     private String id;
-    private TaskType type;
+    private String type;
     private Object data;
     private boolean completed;
 }

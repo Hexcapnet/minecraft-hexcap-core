@@ -19,13 +19,13 @@ public class ServerTaskHandler {
 
     public void handle(Task task) {
         switch (task.getType()) {
-            case REGISTER:
+            case "REGISTER":
                 handleRegister(task);
                 break;
-            case UNREGISTER:
+            case "UNREGISTER":
                 handleUnregister(task);
                 break;
-            case COMMAND:
+            case "COMMAND":
                 handleCommand(task);
                 break;
         }
@@ -87,7 +87,7 @@ public class ServerTaskHandler {
     private Class<?> authMeClass() {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
-            return classLoader.loadClass("net.hexcap.minecraft.module.authme.service.authme.IAuthMeService");
+            return classLoader.loadClass("net.hexcap.minecraft.module.authme.service.authme.impl.IAuthMeService");
         } catch (ClassNotFoundException e) {
             logger.error("Hexauth not found.");
             return null;

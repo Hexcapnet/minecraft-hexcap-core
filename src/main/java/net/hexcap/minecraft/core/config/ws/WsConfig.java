@@ -127,6 +127,8 @@ public class WsConfig {
 
                 @Override
                 public void handleFrame(@NotNull StompHeaders headers, Object payload) {
+                    logger.info("Received task from the backend server.");
+                    logger.info(payload.toString());
                     Task task = (Task) payload;
                     serverTaskHandler.handle(task);
                 }
@@ -139,6 +141,8 @@ public class WsConfig {
 
                 @Override
                 public void handleFrame(@NotNull StompHeaders headers, Object payload) {
+                    logger.info("Received task from the backend server.");
+                    logger.info(payload.toString());
                     Task task = (Task) payload;
                     backendTaskHandler.handle(task);
                 }
