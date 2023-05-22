@@ -4,17 +4,28 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import net.hexcap.minecraft.core.Core;
 import net.hexcap.minecraft.core.dto.auth.RegisterDTO;
 import net.hexcap.minecraft.core.dto.command.CommandDTO;
+import net.hexcap.minecraft.core.model.config.Config;
 import net.hexcap.minecraft.core.model.task.Task;
 import net.hexcap.minecraft.core.service.logger.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+import static net.hexcap.minecraft.core.config.task.TaskConfig.sslContext;
 
 public class ServerTaskHandler {
     private final Core core = Core.instance;
     private final Logger logger = core.getHexLogger();
+    private final HttpClient httpClient = HttpClient.newBuilder()
+            .sslContext(sslContext())
+            .build();
     private final ObjectMapper mapper = new ObjectMapper();
 
     public void handle(Task task) {
@@ -45,6 +56,7 @@ public class ServerTaskHandler {
             Method registerMethod = authMeClass.getMethod("register", String.class, String.class);
             registerMethod.invoke(authMeService, username, password);
             logger.info("Register " + username + " to AuthMe.");
+            completeTask(task.getId());
         } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
                  NoSuchMethodException e) {
             throw new RuntimeException(e);
@@ -60,9 +72,10 @@ public class ServerTaskHandler {
                 return;
             }
             Object authMeService = authMeClass.getDeclaredConstructor().newInstance();
-            Method unRegisterMethod = authMeClass.getMethod("unRegister");
-            unRegisterMethod.invoke(authMeService);
+            Method unRegisterMethod = authMeClass.getMethod("unRegister", String.class);
+            unRegisterMethod.invoke(authMeService, username);
             logger.info("Unregister " + username + " from AuthMe.");
+            completeTask(task.getId());
         } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
                  NoSuchMethodException e) {
             throw new RuntimeException(e);
@@ -79,6 +92,7 @@ public class ServerTaskHandler {
                     Bukkit.dispatchCommand(console, cmd);
                 });
             });
+            completeTask(task.getId());
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
@@ -91,6 +105,29 @@ public class ServerTaskHandler {
         } catch (ClassNotFoundException e) {
             logger.error("Hexauth not found.");
             return null;
+        }
+    }
+
+    private void completeTask(String id) {
+        try {
+            Config config = new Config();
+            String domain = config.getYaml().getString("backend.domain");
+            String apiKey = config.getYaml().getString("backend.security.api-key");
+            String secretKey = config.getYaml().getString("backend.security.api-secret");
+            HttpRequest request = HttpRequest.newBuilder()
+                    .POST(HttpRequest.BodyPublishers.noBody())
+                    .header("Content-Type", "application/json")
+                    .headers("X-API-KEY", apiKey, "X-API-SECRET", secretKey)
+                    .uri(URI.create("https://" + domain + "/api/v1/tasks/" + id + "/complete"))
+                    .build();
+            HttpResponse<Void> response = httpClient.send(request, HttpResponse.BodyHandlers.discarding());
+            if (response.statusCode() != 200) {
+                logger.error("Failed to complete task: " + id);
+                return;
+            }
+            logger.info("Completed task: " + id);
+        } catch (IOException | InterruptedException e) {
+            logger.error(e.getMessage());
         }
     }
 }

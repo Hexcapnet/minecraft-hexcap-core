@@ -3,14 +3,14 @@ package net.hexcap.minecraft.core;
 import lombok.Getter;
 import lombok.Setter;
 import net.hexcap.minecraft.core.config.file.FileManager;
-import net.hexcap.minecraft.core.config.ws.WsConfig;
+import net.hexcap.minecraft.core.config.task.TaskConfig;
+import net.hexcap.minecraft.core.config.ws.WSConfig;
 import net.hexcap.minecraft.core.event.ServerLoadEventHandler;
 import net.hexcap.minecraft.core.handler.ModuleHandler;
 import net.hexcap.minecraft.core.service.logger.Logger;
 import org.bukkit.plugin.InvalidDescriptionException;
 import org.bukkit.plugin.InvalidPluginException;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.springframework.messaging.simp.stomp.StompSession;
 
 import java.io.IOException;
 
@@ -19,6 +19,8 @@ import java.io.IOException;
 public final class Core extends JavaPlugin {
     @Getter
     public static Core instance;
+    public static WSConfig wsConfig;
+
 
     @Override
     public void onLoad() {
@@ -33,8 +35,8 @@ public final class Core extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        StompSession session = WsConfig.getSession();
-        if (session != null && session.isConnected()) session.disconnect();
+        /*StompSession session = WsConfig.getSession();
+        if (session != null && session.isConnected()) session.disconnect();*/
         getHexLogger().info("Plugin disabled.");
 
     }
@@ -52,11 +54,16 @@ public final class Core extends JavaPlugin {
             instance = this;
             FileManager fileManager = new FileManager();
             fileManager._init();
-            WsConfig.connect();
+            listenTasks();
             ModuleHandler moduleHandler = new ModuleHandler();
             moduleHandler.loadModules();
         } catch (InvalidPluginException | InvalidDescriptionException | IOException e) {
             getHexLogger().error(e.getMessage());
         }
+    }
+
+    private void listenTasks() {
+        TaskConfig taskConfig = new TaskConfig();
+        taskConfig.connect();
     }
 }

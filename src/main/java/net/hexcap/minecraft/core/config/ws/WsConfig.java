@@ -1,41 +1,7 @@
 package net.hexcap.minecraft.core.config.ws;
 
-import net.hexcap.minecraft.core.Core;
-import net.hexcap.minecraft.core.handler.BackendTaskHandler;
-import net.hexcap.minecraft.core.handler.ServerTaskHandler;
-import net.hexcap.minecraft.core.model.config.Config;
-import net.hexcap.minecraft.core.model.task.Task;
-import net.hexcap.minecraft.core.service.logger.Logger;
-import org.bukkit.Bukkit;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.messaging.converter.MappingJackson2MessageConverter;
-import org.springframework.messaging.simp.stomp.*;
-import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.util.concurrent.ListenableFutureCallback;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.socket.WebSocketHttpHeaders;
-import org.springframework.web.socket.client.standard.StandardWebSocketClient;
-import org.springframework.web.socket.messaging.WebSocketStompClient;
-import org.springframework.web.socket.sockjs.client.SockJsClient;
-import org.springframework.web.socket.sockjs.client.WebSocketTransport;
-
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-import javax.websocket.ContainerProvider;
-import javax.websocket.WebSocketContainer;
-import java.lang.reflect.Type;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.cert.X509Certificate;
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-
 public class WsConfig {
-    private static final Core core = Core.instance;
+    /*private static final Core core = Core.instance;
     private static final Logger logger = core.getHexLogger();
     private static StompSession session;
 
@@ -69,7 +35,7 @@ public class WsConfig {
     public static void connect() {
         Config config = new Config();
         String domain = config.getYaml().getString("backend.domain");
-        String url = "https://" + domain + "/api/v1/ws";
+        String url = "http://local.hexcap.net/api/v1/ws";
         String apiKey = config.getYaml().getString("backend.security.api-key");
         String secretKey = config.getYaml().getString("backend.security.api-secret");
         WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
@@ -87,7 +53,6 @@ public class WsConfig {
 
             StompSessionHandler sessionHandler = new StompSessionHandler();
 
-
             StandardWebSocketClient webSocketClient = new StandardWebSocketClient();
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
             container.setDefaultMaxBinaryMessageBufferSize(1024 * 1024);
@@ -104,6 +69,7 @@ public class WsConfig {
             logger.info("Connected to the backend server.");
         } catch (HttpClientErrorException | InterruptedException | ExecutionException e) {
             logger.error("Please check your configurations. (config.yml)");
+            logger.error(e.getMessage());
             Bukkit.getPluginManager().disablePlugin(Core.getInstance());
         } catch (NoSuchAlgorithmException | KeyManagementException e) {
             throw new RuntimeException(e);
@@ -153,5 +119,5 @@ public class WsConfig {
         public void handleException(@NotNull StompSession session, StompCommand command, @NotNull StompHeaders headers, byte @NotNull [] payload, Throwable exception) {
             logger.error("Exception occurred: " + exception.getMessage());
         }
-    }
+    }*/
 }
