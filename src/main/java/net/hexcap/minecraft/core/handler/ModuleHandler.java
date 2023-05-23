@@ -9,10 +9,13 @@ import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.jar.JarFile;
 
 public class ModuleHandler {
     private final Logger logger = Core.instance.getHexLogger();
+    private List<Plugin> modules = new ArrayList<>();
 
     public void loadModules() throws InvalidPluginException, InvalidDescriptionException, IOException {
         logger.info("Loading modules... please wait.");
@@ -35,10 +38,19 @@ public class ModuleHandler {
                     continue;
                 }
                 Plugin plugin = Bukkit.getPluginManager().loadPlugin(file);
+                this.modules.add(plugin);
                 logger.info("Module " + file.getName() + " is loaded.");
                 assert plugin != null;
                 Bukkit.getPluginManager().enablePlugin(plugin);
             }
+        }
+    }
+
+    public void unloadModules() {
+        logger.info("Unloading modules... please wait.");
+        for (Plugin plugin : modules) {
+            Bukkit.getPluginManager().disablePlugin(plugin);
+            logger.info("Module " + plugin.getName() + " is unloaded.");
         }
     }
 

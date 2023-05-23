@@ -82,7 +82,12 @@ public class TaskConfig {
                 reconnect();
                 Thread.currentThread().interrupt();
             }
-        }, ex -> logger.error("Connection failed."), () -> {
+        }, ex -> {
+            logger.error("Connection failed.");
+            connected = false;
+            reconnect();
+            Thread.currentThread().interrupt();
+        }, () -> {
             logger.error("Connection closed. Check your configuration. (config.yml) or maybe the backend server is down.");
             connected = false;
             reconnect();

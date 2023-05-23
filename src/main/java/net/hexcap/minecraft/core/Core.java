@@ -18,6 +18,7 @@ import java.io.IOException;
 public final class Core extends JavaPlugin {
     @Getter
     public static Core instance;
+    private static ModuleHandler moduleHandler;
 
     @Override
     public void onLoad() {
@@ -32,6 +33,7 @@ public final class Core extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        moduleHandler.unloadModules();
         getHexLogger().info("Plugin disabled.");
     }
 
@@ -49,7 +51,7 @@ public final class Core extends JavaPlugin {
             FileManager fileManager = new FileManager();
             fileManager._init();
             listenTasks();
-            ModuleHandler moduleHandler = new ModuleHandler();
+            moduleHandler = new ModuleHandler();
             moduleHandler.loadModules();
         } catch (InvalidPluginException | InvalidDescriptionException | IOException e) {
             getHexLogger().error(e.getMessage());

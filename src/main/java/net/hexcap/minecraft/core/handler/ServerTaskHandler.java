@@ -3,6 +3,7 @@ package net.hexcap.minecraft.core.handler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.hexcap.minecraft.core.Core;
 import net.hexcap.minecraft.core.dto.auth.RegisterDTO;
+import net.hexcap.minecraft.core.dto.auth.UpdatePasswordDTO;
 import net.hexcap.minecraft.core.dto.command.CommandDTO;
 import net.hexcap.minecraft.core.model.config.Config;
 import net.hexcap.minecraft.core.model.task.Task;
@@ -37,6 +38,9 @@ public class ServerTaskHandler {
             case "UNREGISTER":
                 handleUnregister(task);
                 break;
+            case "UPDATE_PASSWORD":
+                handleUpdatePassword(task);
+                break;
             case "COMMAND":
                 handleCommand(task);
                 break;
@@ -60,7 +64,7 @@ public class ServerTaskHandler {
             completeTask(task.getId());
         } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
                  NoSuchMethodException e) {
-            throw new RuntimeException(e);
+            logger.error("Failed to register " + username);
         }
     }
 
@@ -79,7 +83,28 @@ public class ServerTaskHandler {
             completeTask(task.getId());
         } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
                  NoSuchMethodException e) {
-            throw new RuntimeException(e);
+            logger.error("Failed to unregister " + username);
+        }
+    }
+
+    private void handleUpdatePassword(Task task) {
+        UpdatePasswordDTO updatePasswordDTO = mapper.convertValue(task.getData(), UpdatePasswordDTO.class);
+        String username = updatePasswordDTO.getUsername();
+        String password = updatePasswordDTO.getPassword();
+        Class<?> authMeClass = authMeClass();
+        try {
+            if (authMeClass == null) {
+                logger.error("Hexauth not found.");
+                return;
+            }
+            Object authMeService = authMeClass.getDeclaredConstructor().newInstance();
+            Method unRegisterMethod = authMeClass.getMethod("updatePassword", String.class, String.class);
+            unRegisterMethod.invoke(authMeService, username, password);
+            logger.info("Unregister " + username + " from AuthMe.");
+            completeTask(task.getId());
+        } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
+                 NoSuchMethodException e) {
+            logger.error("Failed to update password.");
         }
     }
 
