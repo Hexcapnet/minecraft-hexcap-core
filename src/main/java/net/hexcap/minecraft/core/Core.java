@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import net.hexcap.minecraft.core.config.file.FileManager;
 import net.hexcap.minecraft.core.config.task.TaskConfig;
-import net.hexcap.minecraft.core.config.ws.WSConfig;
 import net.hexcap.minecraft.core.event.ServerLoadEventHandler;
 import net.hexcap.minecraft.core.handler.ModuleHandler;
 import net.hexcap.minecraft.core.service.logger.Logger;
@@ -19,8 +18,6 @@ import java.io.IOException;
 public final class Core extends JavaPlugin {
     @Getter
     public static Core instance;
-    public static WSConfig wsConfig;
-
 
     @Override
     public void onLoad() {
@@ -35,10 +32,7 @@ public final class Core extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        /*StompSession session = WsConfig.getSession();
-        if (session != null && session.isConnected()) session.disconnect();*/
         getHexLogger().info("Plugin disabled.");
-
     }
 
     private void _registerEvents() {

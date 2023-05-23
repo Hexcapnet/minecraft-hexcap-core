@@ -79,7 +79,7 @@ public class IAuthService implements AuthService {
             logger.info(response.body());
             return response.statusCode() == 200;
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error("Failed to register " + username + " : " + e.getMessage());
             return false;
         }
     }
@@ -105,7 +105,7 @@ public class IAuthService implements AuthService {
             if (status) logger.info("All players synced to backend.");
             return status;
         } catch (IOException | InterruptedException e) {
-            logger.error(e.getMessage());
+            logger.error("Failed to sync players to backend.");
             return false;
         }
     }
@@ -131,7 +131,7 @@ public class IAuthService implements AuthService {
             HttpResponse<Void> response = httpClient.send(request, HttpResponse.BodyHandlers.discarding());
             return response.statusCode() == 200;
         } catch (IOException | InterruptedException e) {
-            logger.error(e.getMessage());
+            logger.error("Failed to unregister " + username + " : " + e.getMessage());
             return false;
         }
     }

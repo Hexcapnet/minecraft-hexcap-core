@@ -20,11 +20,11 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
-import java.util.concurrent.TimeUnit;
 
 public class TaskConfig {
     private static final Logger logger = Core.instance.getHexLogger();
     private final ServerTaskHandler serverTaskHandler = new ServerTaskHandler();
+    private static boolean connected = false;
 
     private static TrustManager[] trustAllCerts() {
         return new TrustManager[]{
@@ -56,35 +56,48 @@ public class TaskConfig {
     }
 
     public void connect() {
+        Config config = new Config();
+        String domain = config.getYaml().getString("backend.domain");
+        URI uri = URI.create("https://" + domain + "/api/v1/tasks/queue");
+        Client client = ClientBuilder.newBuilder()
+                .hostnameVerifier((s, sslSession) -> true)
+                .register(TaskRequestContext.class)
+                .sslContext(sslContext()).build();
+        WebTarget target = client.target(uri);
+        SseEventSource sseEventSource = SseEventSource
+                .target(target)
+                .build();
+        sseEventSource.register(event -> {
+            try {
+                if(!connected) logger.info("Connected to the backend server.");
+                connected = true;
+                ObjectMapper mapper = new ObjectMapper();
+                Task task = mapper.readValue(event.readData(), Task.class);
+                if (task.getId() == null) return;
+                logger.info("Received a task from the backend server. Task ID -> " + task.getId());
+                serverTaskHandler.handle(task);
+            } catch (JsonProcessingException e) {
+                logger.error("Failed to parse the task.");
+                connected = false;
+                reconnect();
+                Thread.currentThread().interrupt();
+            }
+        }, ex -> logger.error("Connection failed."), () -> {
+            logger.error("Connection closed. Check your configuration. (config.yml) or maybe the backend server is down.");
+            connected = false;
+            reconnect();
+            Thread.currentThread().interrupt();
+        });
+        Thread thread = new Thread(sseEventSource::open);
+        thread.start();
+    }
+
+    private void reconnect() {
         try {
-            Config config = new Config();
-            String domain = config.getYaml().getString("backend.domain");
-            URI uri = URI.create("https://" + domain + "/api/v1/tasks/queue");
-            SSLContext sslContext = SSLContext.getInstance("TLS");
-            sslContext.init(null, trustAllCerts(), new SecureRandom());
-            Client client = ClientBuilder.newBuilder()
-                    .hostnameVerifier((s, sslSession) -> true)
-                    .register(TaskRequestContext.class)
-                    .sslContext(sslContext).build();
-            WebTarget target = client.target(uri);
-            SseEventSource sseEventSource = SseEventSource
-                    .target(target)
-                    .reconnectingEvery(5, TimeUnit.SECONDS)
-                    .build();
-            sseEventSource.register(event -> {
-                try {
-                    ObjectMapper mapper = new ObjectMapper();
-                    Task task = mapper.readValue(event.readData(), Task.class);
-                    if (task.getId() == null) return;
-                    logger.info("Received a task from the backend server. Task ID -> " + task.getId());
-                    serverTaskHandler.handle(task);
-                } catch (JsonProcessingException e) {
-                    logger.error(e.getMessage());
-                }
-            }, ex -> logger.error(ex.getMessage()));
-            Thread thread = new Thread(sseEventSource::open);
-            thread.start();
-        } catch (NoSuchAlgorithmException | KeyManagementException e) {
+            Thread.sleep(5000);
+            logger.info("Trying to reconnect...");
+            connect();
+        } catch (InterruptedException e) {
             logger.error(e.getMessage());
         }
     }

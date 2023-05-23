@@ -28,6 +28,7 @@ public class ServerTaskHandler {
             .build();
     private final ObjectMapper mapper = new ObjectMapper();
 
+
     public void handle(Task task) {
         switch (task.getType()) {
             case "REGISTER":
@@ -94,7 +95,7 @@ public class ServerTaskHandler {
             });
             completeTask(task.getId());
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error("Failed to execute command.");
         }
     }
 
@@ -127,7 +128,7 @@ public class ServerTaskHandler {
             }
             logger.info("Completed task: " + id);
         } catch (IOException | InterruptedException e) {
-            logger.error(e.getMessage());
+            logger.error("Failed to complete task: " + id);
         }
     }
 }
